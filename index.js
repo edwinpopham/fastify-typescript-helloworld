@@ -17,6 +17,13 @@ const server = (0, fastify_1.default)();
 server.get("/helloworld", (request, reply) => __awaiter(void 0, void 0, void 0, function* () {
     return "hello mate, it works";
 }));
+server.get("/hello-name", (request, reply) => __awaiter(void 0, void 0, void 0, function* () {
+    const { name } = request.query;
+    const customerHeader = request.headers["h-Custom"];
+    reply.code(200).send(`hello ${name}, its working mate`);
+    reply.code(404).send({ error: "Not found" });
+    return `logged in!`;
+}));
 server.listen({ port: 8080 }, (err, address) => {
     if (err) {
         console.error(err);
